@@ -522,6 +522,40 @@ section.alt {
   inset: 0;
   background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.3) 100%);
   pointer-events: none;
+  z-index: 1;
+}
+.hero-video-sound-btn {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, border-color 0.2s;
+}
+.hero-video-sound-btn:hover {
+  background: rgba(0, 255, 136, 0.2);
+  border-color: rgba(0, 255, 136, 0.4);
+  color: var(--color-primary);
+}
+.hero-video-sound-btn:active {
+  transform: scale(0.97);
+}
+.hero-video-sound-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 .hero-image-wrap img {
   width: 100%;
@@ -910,6 +944,16 @@ section.alt {
   overflow: hidden;
   background: var(--color-border);
   box-shadow: var(--shadow-lg);
+}
+.video-demo-wrap {
+  position: relative;
+}
+/* Sound button top-right so it doesn’t sit on native controls */
+.video-demo-wrap .video-demo-sound-btn,
+.video-demo-wrap .hero-video-sound-btn {
+  bottom: auto;
+  top: 0.75rem;
+  right: 0.75rem;
 }
 .video-demo-video {
   width: 100%;
