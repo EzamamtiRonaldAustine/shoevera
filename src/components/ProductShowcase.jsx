@@ -1,19 +1,45 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { getWhatsAppUrl } from '../config'
 
 export default function ProductShowcase({ productImage }) {
   const [imageError, setImageError] = useState(false)
   const showImage = productImage && !imageError
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
     <section className="showcase" id="product">
-      <div className="container">
-        <p className="section-eyebrow">The product</p>
-        <h2>Built for Everyday Use</h2>
-        <p className="showcase-intro">
+      <div className="container" ref={ref}>
+        <motion.p
+          className="section-eyebrow"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+        >
+          The product
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          Built for Everyday Use
+        </motion.h2>
+        <motion.p
+          className="showcase-intro"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.15 }}
+        >
           Lightweight, durable materials and a simple design; so you can focus on your day, not on your shoes. Waterproof, portable, and easy to clean.
-        </p>
-        <div className="showcase-main">
+        </motion.p>
+        <motion.div
+          className="showcase-main"
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="showcase-image">
             {showImage ? (
               <img src={productImage} alt="Shoevera product" onError={() => setImageError(true)} />
@@ -35,7 +61,7 @@ export default function ProductShowcase({ productImage }) {
               Order on WhatsApp
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
